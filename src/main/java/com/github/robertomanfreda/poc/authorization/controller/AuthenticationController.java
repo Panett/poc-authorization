@@ -10,10 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -29,27 +26,7 @@ public class AuthenticationController {
 
     @Authorizing
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginRequest loginRequest,
-                                               BindingResult bindingResult) {
-
-        // TODO use this technique for every endpoints (?AOP? - ?ControllerAdvice?)
-        if (bindingResult.hasErrors()) {
-            Map<String, String> errors = new HashMap<>();
-
-            for (ObjectError error : bindingResult.getAllErrors()) {
-                String fieldError = ((FieldError) error).getField();
-                String errorMessage = error.getDefaultMessage();
-
-                errors.put(fieldError, errorMessage);
-            }
-
-            LoginResponse response = LoginResponse.builder()
-                    .httpStatus(HttpStatus.UNPROCESSABLE_ENTITY.value())
-                    .errors(errors)
-                    .build();
-
-            return new ResponseEntity<>(response, Objects.requireNonNull(HttpStatus.resolve(response.getHttpStatus())));
-        }
+    public ResponseEntity<LoginResponse> login(@RequestBody @Valid LoginRequest loginRequest) {
 
         LoginResponse response = LoginResponse.builder()
                 .httpStatus(HttpStatus.OK.value())
@@ -57,5 +34,11 @@ public class AuthenticationController {
                 .build();
 
         return new ResponseEntity<>(response, Objects.requireNonNull(HttpStatus.resolve(response.getHttpStatus())));
+    }
+
+    @Authorizing()
+    @GetMapping("/prova")
+    public ResponseEntity<String> prova() {
+        return new ResponseEntity<>("Hello, World!", HttpStatus.OK);
     }
 }

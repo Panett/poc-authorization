@@ -34,7 +34,7 @@ public class AuthorizationAspect {
     public Object authorizing(ProceedingJoinPoint pjp) throws Throwable {
 
         // Extract authentication token, in this case we're using a simple base64 token
-        Optional<String> authorization = Optional.ofNullable(httpServletRequest.getHeader("Authorization"));
+            Optional<String> authorization = Optional.ofNullable(httpServletRequest.getHeader("Authorization"));
 
         if (authorization.isPresent()) {
             // Remove 'Basic ' keyword from the header

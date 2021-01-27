@@ -11,5 +11,4 @@ import java.util.Map;
 @NoArgsConstructor
 public class BaseResponse {
     private Integer httpStatus;
-    private Map<String, String> errors;
 }

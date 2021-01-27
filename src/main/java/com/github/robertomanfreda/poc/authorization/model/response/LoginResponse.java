@@ -14,8 +14,7 @@ public class LoginResponse extends BaseResponse {
     private String sessionID;
 
     @Builder
-    public LoginResponse(String sessionID, Integer httpStatus, Map<String, String> errors) {
-        super(httpStatus, errors);
+    public LoginResponse(String sessionID, Integer httpStatus) {
         this.sessionID = sessionID;
     }
 }
