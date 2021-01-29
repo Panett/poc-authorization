@@ -1,6 +1,6 @@
 package com.github.robertomanfreda.poc.authorization.aop;
 
-import com.github.robertomanfreda.poc.authorization.stub.Base64Stub;
+import com.github.robertomanfreda.poc.authorization.component.AuthenticationService;
 import com.github.robertomanfreda.poc.authorization.utils.HeadersHelper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,6 +24,7 @@ import static com.github.robertomanfreda.poc.authorization.utils.HeadersHelper.T
 public class AuthorizationAspect {
 
     private final HttpServletRequest httpServletRequest;
+    private final AuthenticationService authenticationService;
 
     @Pointcut("execution(@com.github.robertomanfreda.poc.authorization.aop.annotation.Authorizing * *.*(..))")
     public void authPointcut() {
@@ -41,7 +42,7 @@ public class AuthorizationAspect {
             String base64Token = HeadersHelper.extractToken(authorization.get(), BASE_64);
 
             // Do your logic and check if the user exists
-            if (Base64Stub.get().contains(base64Token)) {
+            if (authenticationService.authenticate(base64Token)) {
                 return pjp.proceed(); // --> The user exists, return the control to the method caller
             }
         }

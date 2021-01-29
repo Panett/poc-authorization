@@ -1,6 +1,5 @@
 package com.github.robertomanfreda.poc.authorization.aop;
 
-import com.github.robertomanfreda.poc.authorization.model.response.LoginResponse;
 import com.github.robertomanfreda.poc.authorization.model.response.ValidationErrorResponse;
 import com.github.robertomanfreda.poc.authorization.model.response.ValidationFieldErrors;
 import org.springframework.http.HttpHeaders;
@@ -14,7 +13,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Optional;
 
 @ControllerAdvice
 public class ControllerValidationExceptionHandler extends ResponseEntityExceptionHandler {

@@ -1,10 +1,13 @@
 package com.github.robertomanfreda.poc.authorization;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.ManagementWebSecurityAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 // TODO Add documentation over the project (using javadoc annotations)
-// TODO Add specific doc for REST endpoints using swagger (or any other tool that you want)
 
 @SpringBootApplication
 public class POCAuthorizationApplication {

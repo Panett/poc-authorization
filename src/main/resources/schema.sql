@@ -1,0 +1,15 @@
+DROP TABLE IF EXISTS AUTHORITIES;
+DROP TABLE IF EXISTS USERS;
+
+CREATE TABLE USERS (
+                       USERNAME VARCHAR(50) NOT NULL,
+                       PASSWORD VARCHAR(100) NOT NULL,
+                       ENABLED TINYINT NOT NULL DEFAULT 1,
+                       PRIMARY KEY (USERNAME)
+);
+
+CREATE TABLE AUTHORITIES (
+                             USERNAME VARCHAR(50) NOT NULL,
+                             AUTHORITY VARCHAR(50) NOT NULL,
+                             FOREIGN KEY (USERNAME) REFERENCES USERS(USERNAME)
+);
