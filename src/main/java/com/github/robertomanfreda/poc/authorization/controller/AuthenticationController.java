@@ -30,10 +30,4 @@ public class AuthenticationController {
 
         return new ResponseEntity<>(response, Objects.requireNonNull(HttpStatus.resolve(response.getHttpStatus())));
     }
-
-    @Authorizing()
-    @GetMapping("/prova")
-    public ResponseEntity<String> prova() {
-        return new ResponseEntity<>("Hello, World!", HttpStatus.OK);
-    }
 }

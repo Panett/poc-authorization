@@ -10,7 +10,6 @@ import java.util.List;
 @Setter
 @Builder
 public class ValidationFieldErrors {
-
     String field;
     List<String> errors;
 }

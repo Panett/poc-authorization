@@ -18,6 +18,12 @@ public class AuthenticationService {
     private final UserDetailsService userDetailsService;
     private final PasswordEncoder passwordEncoder;
 
+    /**
+     *<p> It will throw a UsernameNotFoundException if the usermame does not exists </p>
+     *
+     * @param base64Token   the plain user password
+     * @return              true if the username and password are correct, false if it's not or the user does not exists
+     */
     public boolean authenticate(String base64Token) {
         String[] decodedToken = new String(Base64.getDecoder().decode(base64Token)).split(":");
         String username = decodedToken[0];

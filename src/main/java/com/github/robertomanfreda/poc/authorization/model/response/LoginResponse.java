@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.util.Map;
+
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
@@ -13,6 +15,7 @@ public class LoginResponse extends BaseResponse {
 
     @Builder
     public LoginResponse(String sessionID, Integer httpStatus) {
+        super(httpStatus);
         this.sessionID = sessionID;
     }
 }
